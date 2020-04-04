@@ -13,7 +13,7 @@ bool Gomoku::PieceOnBoard(int x, int y)
 {
 	//check empty and set
 	if (board_[x + y * board_length_] == none) {
-		board_[x + y * board_length_] == turn_;
+		board_[x + y * board_length_] = turn_;
 
 		//record last move to CheckWin()
 		last_move_ = { x,y };
