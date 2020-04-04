@@ -37,11 +37,21 @@ bool Gomoku::CheckWin() {
 	if (connected_piece >= 5)
 		return true;
 
-	//check diagonal
+	//check diagonal right up
 	connected_piece = 1;
 	for (int i = 1; board(x+i, y - i) == turn_; i++) 
 		connected_piece++;
 	for (int i = 1; board(x-i, y + i) == turn_; i++) 
+		connected_piece++;
+	
+	if (connected_piece >= 5)
+		return true;
+
+	//check diagonal left up
+	connected_piece = 1;
+	for (int i = 1; board(x-i, y - i) == turn_; i++) 
+		connected_piece++;
+	for (int i = 1; board(x+i, y + i) == turn_; i++) 
 		connected_piece++;
 	
 	if (connected_piece >= 5)
