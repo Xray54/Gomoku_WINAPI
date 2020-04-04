@@ -68,3 +68,10 @@ bool Gomoku::CheckWin() {
 
 	return false;
 }
+
+void Gomoku::reset() {
+	for (size_t i = 0; i < board_.size(); i++) 
+		board_[i] = none;
+	
+	turn_ = black;
+}

@@ -29,6 +29,8 @@ public:
 		else
 			turn_ = black;
 	}
+
+	void reset();
 	
 	piece getturn() const { return turn_; }
 	int board_length() const { return board_length_; }

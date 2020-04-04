@@ -181,7 +181,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 
 		if (gomoku.CheckWin()) {
 			MessageBox(hWnd, L"½Â¸®", L"½Â¸®", MB_OK);
-			//have to reset
+			
+			//reset
+			gomoku.reset();
 		}
 		else {
 			gomoku.PassTurn();
