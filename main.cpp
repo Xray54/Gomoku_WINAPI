@@ -171,6 +171,12 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 	switch (iMessage) {
 	case WM_CREATE:
 		hWndMain = hWnd;
+		SetTimer(hWnd, 1, 25, NULL);
+		return 0;
+
+
+	case WM_TIMER:
+		UpdateScreen();
 		return 0;
 
 	case WM_LBUTTONDOWN:
@@ -208,8 +214,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 
 		mouse_board_x = (mouse_x + kSquareSize / 2) / kSquareSize - 1;
 		mouse_board_y = (mouse_y + kSquareSize / 2) / kSquareSize - 1;
-
-		UpdateScreen();
 		return 0;
 
 	case WM_PAINT:
