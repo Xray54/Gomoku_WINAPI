@@ -39,8 +39,8 @@ public:
 private:
 	vector<piece> board_;
 	piece board(int x, int y) {
-		if (x < 0 || board_length_ < x ||
-			y < 0 || board_length_ < y) {
+		if (x < 0 || board_length_ <= x ||
+			y < 0 || board_length_ <= y) {
 			return none;
 		}
 		return board_[x + y * board_length_];

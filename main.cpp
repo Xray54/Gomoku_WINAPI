@@ -180,7 +180,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 			return 0;
 
 		if (gomoku.CheckWin()) {
-			MessageBox(hWnd, L"½Â¸®", L"½Â¸®", MB_OK);
+			switch (gomoku.getturn()) {
+			case gomoku.black:
+				MessageBox(hWnd, L"Èæ ½Â¸®", L"Èæ ½Â¸®", MB_OK);
+				break;
+			case gomoku.white:
+				MessageBox(hWnd, L"¹é ½Â¸®", L"¹é ½Â¸®", MB_OK);
+				break;
+			}
 			
 			//reset
 			gomoku.reset();
@@ -199,23 +206,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 		mouse_board_y = (mouse_y + kSquareSize / 2) / kSquareSize - 1;
 
 		UpdateScreen();
-		return 0;
-
-	case WM_KEYDOWN:
-		switch (wParam) {
-		case VK_LEFT:
-			UpdateScreen();
-			break;
-		case VK_RIGHT:
-			UpdateScreen();
-			break;
-		case VK_UP:
-			UpdateScreen();
-			break;
-		case VK_DOWN:
-			UpdateScreen();
-			break;
-		}
 		return 0;
 
 	case WM_PAINT:
