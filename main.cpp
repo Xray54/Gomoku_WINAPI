@@ -1,10 +1,19 @@
 #include <windows.h>
 #include "gomoku.h"
 
+
+Gomoku gomoku;
+
+const int kSquareSize{ 50 };
+
+int mouse_board_x{ -1 };
+int mouse_board_y{ -1 };
+
+
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 HINSTANCE g_hInst;
 HWND hWndMain;
-LPCTSTR lpszClass = TEXT("GpDoubleBuffer");
+LPCTSTR lpszClass = TEXT("Gomoku");
 
 #include <gdiplus.h>
 using namespace Gdiplus;
@@ -51,7 +60,9 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance
 	RegisterClass(&WndClass);
 
 	hWnd = CreateWindow(lpszClass, lpszClass, WS_OVERLAPPEDWINDOW,
-		CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT,
+		CW_USEDEFAULT, CW_USEDEFAULT, 
+		kSquareSize * (gomoku.board_length() + 1) + GetSystemMetrics(SM_CXFRAME) * 2,
+		kSquareSize * (gomoku.board_length() + 1) + GetSystemMetrics(SM_CYFRAME) + GetSystemMetrics(SM_CYCAPTION),
 		NULL, (HMENU)NULL, hInstance, NULL);
 	ShowWindow(hWnd, nCmdShow);
 
@@ -63,13 +74,6 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance
 }
 
 CachedBitmap* pCBit;
-
-Gomoku gomoku;
-
-const int kSquareSize{50};
-
-int mouse_board_x{-1};
-int mouse_board_y{-1};
 
 void UpdateScreen() {
 	Graphics G(hWndMain);
